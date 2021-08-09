@@ -8,7 +8,7 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 })
 export class RegisterformComponent implements OnInit {
 
-  sub:any;
+  method:any;
 
   countryArray = [
     {
@@ -95,15 +95,15 @@ export class RegisterformComponent implements OnInit {
   //      return (obj.countryid==responce.id)
   //    })
   //  })
-  this .sub=this.loginform.get('country')?.valueChanges.subscribe((responce)=>{
+  this .method=this.loginform.get('country')?.valueChanges.subscribe((responce)=>{
        console.log(responce);
        this.stateArray=this.stateArray.filter((obj)=>{
          return (obj.countryid==responce.id)
        })
      })
   }
-  ngOnDestroy() {
-    this.sub.unsubscribe();
+  ngOnDestroy(): void {
+    this.method.unsubscribe();
   }
   get firstname() { return this.loginform.get('firstname')!; }
   get lastname() { return this.loginform.get('lastname')!; }
