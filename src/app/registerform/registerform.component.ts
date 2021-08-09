@@ -7,6 +7,9 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
   styleUrls: ['./registerform.component.css']
 })
 export class RegisterformComponent implements OnInit {
+
+  sub:any;
+
   countryArray = [
     {
       id: 1,
@@ -69,7 +72,7 @@ export class RegisterformComponent implements OnInit {
     }
   ];
 
-
+  
 
 
 
@@ -86,14 +89,22 @@ export class RegisterformComponent implements OnInit {
      country: new FormControl ('',[Validators.required]),
      state: new FormControl ('',[Validators.required]),
     });
-   this.loginform.get('country')?.valueChanges.subscribe((responce)=>{
-     console.log(responce);
-     this.stateArray=this.stateArray.filter((obj)=>{
-       return (obj.countryid==responce.id)
+  //  this.loginform.get('country')?.valueChanges.subscribe((responce)=>{
+  //    console.log(responce);
+  //    this.stateArray=this.stateArray.filter((obj)=>{
+  //      return (obj.countryid==responce.id)
+  //    })
+  //  })
+  this .sub=this.loginform.get('country')?.valueChanges.subscribe((responce)=>{
+       console.log(responce);
+       this.stateArray=this.stateArray.filter((obj)=>{
+         return (obj.countryid==responce.id)
+       })
      })
-   })
   }
-
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
   get firstname() { return this.loginform.get('firstname')!; }
   get lastname() { return this.loginform.get('lastname')!; }
   get email() { return this.loginform.get('email')!; }
