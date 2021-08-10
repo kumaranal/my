@@ -112,6 +112,6 @@ export class RegisterformComponent implements OnInit {
   get phone_no() { return this.loginform.get('phone_no')!; }
   //  get country() { return this.loginform.get('phone_no')!; }
 
-
+//bbkb
 }
 
