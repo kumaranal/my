@@ -79,6 +79,7 @@ export class RegisterformComponent implements OnInit {
 
 
   loginform!: FormGroup;
+  stateArray1: { id: number; countryid: number; name: string; }[] | any;
   ngOnInit(): void {
     this.loginform = new FormGroup({
 
@@ -97,7 +98,7 @@ export class RegisterformComponent implements OnInit {
   //  })
   this .method=this.loginform.get('country')?.valueChanges.subscribe((responce)=>{
        console.log(responce);
-       this.stateArray=this.stateArray.filter((obj)=>{
+       this.stateArray1=this.stateArray.filter((obj)=>{
          return (obj.countryid==responce.id)
        })
      })
