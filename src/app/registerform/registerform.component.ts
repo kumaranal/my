@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-
+import { freeApiService } from '../services/api.service';
+import { country } from '../classes/country';
 @Component({
   selector: 'app-registerform',
   templateUrl: './registerform.component.html',
@@ -77,10 +78,22 @@ export class RegisterformComponent implements OnInit {
 
 
 
+  constructor(private _freeapiservice:freeApiService){
+  }
 
   loginform!: FormGroup;
   stateArray1: { id: number; countryid: number; name: string; }[] | any;
+  lstcountry:country[] | any;
+
+
   ngOnInit(): void {
+
+    this._freeapiservice.getcountry().subscribe(
+      data=>
+      {
+          this.lstcountry=data;
+      }
+    );
     this.loginform = new FormGroup({
 
       firstname: new FormControl('', [Validators.required]),
@@ -112,6 +125,8 @@ export class RegisterformComponent implements OnInit {
   get phone_no() { return this.loginform.get('phone_no')!; }
   //  get country() { return this.loginform.get('phone_no')!; }
 
-//bbkb
+
+  
+
 }
 
