@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { RegisterformComponent } from './registerform/registerform.component';
 import { HttpClient } from '@angular/common/http';
-import { freeApiService} from './services/api.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @NgModule({
@@ -20,7 +20,7 @@ import { freeApiService} from './services/api.service';
     ReactiveFormsModule,
     HttpClient
   ],
-  providers: [freeApiService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,99 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { freeApiService } from '../services/api.service';
-import { country } from '../classes/country';
+import { get } from 'https';
+
 @Component({
   selector: 'app-registerform',
   templateUrl: './registerform.component.html',
   styleUrls: ['./registerform.component.css']
 })
-export class RegisterformComponent implements OnInit {
+export class RegisterformComponent implements OnInit{
 
   method:any;
 
-  countryArray = [
-    {
-      id: 1,
-      name: "INDIA"
-    },
-    {
-      id: 2,
-      name: "USA"
-    },
-    {
-      id: 3,
-      name: "UK"
-    }
-  ];
-  stateArray=[
-    {
-      id: 1,
-      countryid:1,
-      name: "west Bengal"
-    },
-    {
-      id: 2,
-      countryid:1,
-      name: "uttarpradesh"
-    },
-    {
-      id: 3,
-      countryid:1,
-      name: "Kerala"
-    },
-    {
-      id: 4,
-      countryid:2,
-      name: "LA"
-    },
-    {
-      id: 5,
-      countryid:2,
-      name: "texax"
-    },
-    {
-      id: 6,
-      countryid:2,
-      name: "washington"
-    },
-    {
-      id: 7,
-      countryid:3,
-      name: "LOndon"
-    },
-    {
-      id: 8,
-      countryid:3,
-      name: "Liverpool"
-    },
-    {
-      id:9,
-      countryid:3,
-      name: "France"
-    }
-  ];
-
-  
-
-
-
-
-  constructor(private _freeapiservice:freeApiService){
+  // constructor(private _freeapiservice:freeApiService){
+  // }
+  ngAfterViewInit(): void {
+    throw new Error('Method not implemented.');
   }
 
   loginform!: FormGroup;
   stateArray1: { id: number; countryid: number; name: string; }[] | any;
-  lstcountry:country[] | any;
+  
 
 
   ngOnInit(): void {
 
-    this._freeapiservice.getcountry().subscribe(
-      data=>
-      {
-          this.lstcountry=data;
-      }
-    );
+    // this._freeapiservice.getcountry().subscribe(
+    //   data=>
+    //   {
+    //       this.lstcountry=data;
+    //   }
+    // );
+    // this.getTypeT();
     this.loginform = new FormGroup({
 
       firstname: new FormControl('', [Validators.required]),
@@ -109,21 +46,21 @@ export class RegisterformComponent implements OnInit {
   //      return (obj.countryid==responce.id)
   //    })
   //  })
-  this .method=this.loginform.get('country')?.valueChanges.subscribe((responce)=>{
-       console.log(responce);
-       this.stateArray1=this.stateArray.filter((obj)=>{
-         return (obj.countryid==responce.id)
-       })
-     })
-  }
-  ngOnDestroy(): void {
-    this.method.unsubscribe();
-  }
+  // this .method=this.loginform.get('country')?.valueChanges.subscribe((responce)=>{
+  //      console.log(responce);
+  //      this.stateArray1=this.stateArray.filter((obj)=>{
+  //        return (obj.countryid==responce.id)
+  //      })
+  //    })
+   }
+  // ngOnDestroy(): void {
+  //   this.method.unsubscribe();
+  // }
   get firstname() { return this.loginform.get('firstname')!; }
   get lastname() { return this.loginform.get('lastname')!; }
   get email() { return this.loginform.get('email')!; }
   get phone_no() { return this.loginform.get('phone_no')!; }
-  //  get country() { return this.loginform.get('phone_no')!; }
+  get country() { return this.loginform.get('country')!; }
 
 
   

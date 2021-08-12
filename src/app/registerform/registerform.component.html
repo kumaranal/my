@@ -89,7 +89,9 @@
 
                   <div *ngFor="let country_name1 of lstcountry" [ngValue]="country_name1">{{country_name1.name}}</div>
 
-   
+                  <select  class="selectpicker dropdown mt-4 ml-3" id="type" data-live-search="true">
+                    <option *ngFor="let test of testModel" [value]="test.id">{{test.description}}</option>
+                 </select>
   </form>
  
   
