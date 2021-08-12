@@ -38,34 +38,19 @@
         <div class="col-lg-4 col-md-6 col-sm-12 mb-3 " id="customControlValidation5">
   
           <select id="testType" formControlName="country">
+            <option value="">Select country...</option>
             <option *ngFor="let country_name of countryArray" [ngValue]="country_name">{{country_name.name}}</option>
           </select>
-          <!-- <select value="selectt" class="form-control" id="structure" (change)="onChangeFirst()" name="selection"
-            [(ngModel)]="countryid">
-            <option selected disabled [ngValue]="undefined">
-              Select
-            </option>
-            <option [ngValue]="countryName.id" *ngFor="let countryName of countryArray">
-              {{ countryName.name }}
-            </option>
-          </select> -->
+         
         </div>
   
         <div class="col-lg-4 col-md-6 col-sm-12 mb-3" id="customControlValidation6">
   
           <select id="testType" formControlName="state">
-            <option *ngFor="let state_name of stateArray1" [ngValue]="state_name">{{state_name.name}}</option>
+            <option value="">Select State... </option>
+              <option *ngFor="let state_name of stateArray1" [ngValue]="state_name">{{state_name.name}} </option>
           </select>
-          <!-- <select style="margin-top: 30px;" value="selection" class="form-control" id="selectt" name="selection">
-            <option selected disabled [ngValue]="undefined">
-              Select
-            </option>
-            <ng-container *ngIf="countryid">
-              <option *ngFor="let country of countryListDrop" [ngValue]="country.id">
-                {{ country.name }}
-              </option>
-            </ng-container>
-          </select> -->
+         
         </div>
       </div>
   
@@ -85,13 +70,6 @@
         </div>
       </div>
     </div>
-   
-
-                  <div *ngFor="let country_name1 of lstcountry" [ngValue]="country_name1">{{country_name1.name}}</div>
-
-                  <select  class="selectpicker dropdown mt-4 ml-3" id="type" data-live-search="true">
-                    <option *ngFor="let test of testModel" [value]="test.id">{{test.description}}</option>
-                 </select>
   </form>
  
   

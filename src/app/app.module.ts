@@ -7,6 +7,7 @@ import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { RegisterformComponent } from './registerform/registerform.component';
 import { HttpClient } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
+import { WebapiService } from './webapi.service';
 
 
 @NgModule({
@@ -18,9 +19,10 @@ import { HttpErrorResponse } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClient
+    HttpClient,
+    HttpErrorResponse
   ],
-  providers: [],
+  providers: [WebapiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
