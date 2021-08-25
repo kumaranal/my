@@ -10,15 +10,15 @@ import { WebapiService } from '../webapi.service';
 export class RegisterformComponent implements OnInit{
 
   method:any;
-  countryId!:any;
-
+  countryId!: number;
+  
   constructor(private WebapiService:WebapiService){
   }
 
   loginform!: FormGroup;
-  countryArray: {id: number; name: string;}[] | any;
+  countryArray:{id: number; name: string;}[] | any;
   stateArray:{id: number; countryid: number; name: string;} [] | any;
-  stateArray1: { id: number; countryid: number; name: string; }[] | any;
+  stateArray1: any;//{ id: number; countryid: number; name: string; }[] | any;
   
 
 
@@ -35,19 +35,24 @@ export class RegisterformComponent implements OnInit{
  
      //for country
       this.WebapiService.getCountry().subscribe(
-        data => this.countryArray =data
+        data => {this.countryArray =data?.data;
+          console.log(data);}
       );
       //for state
       
       this.WebapiService.getState().subscribe(
-        data => this.stateArray =data
+        data =>{this.stateArray =data?.data;
+          console.log(data);}
       );
       this .method=this.loginform.get('country')?.valueChanges.subscribe((responce)=>{
         console.log(responce);
-        this.stateArray1=this.stateArray.filter((obj: { countryid: any; })=>{
-          return (obj.countryid==responce.id)
-        })
-      })
+        console.log(responce.id);
+        this.stateArray1=this.stateArray.filter((obj:any)=>{
+          return obj?.countyId==responce.id;
+        });
+        console.log(this.stateArray);
+          console.log(this.stateArray1);
+      });
    }
   ngOnDestroy(): void {
     this.method.unsubscribe();
@@ -59,7 +64,13 @@ export class RegisterformComponent implements OnInit{
   get country() { return this.loginform.get('country')!; }
 
 
-
+submit(){
+  console.log(this.loginform.value);
+  this.WebapiService.postRegister(this.loginform.value).subscribe(
+    data => {
+      console.log(data);}
+  );
+}
   
 
 }

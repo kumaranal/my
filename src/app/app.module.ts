@@ -5,10 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { RegisterformComponent } from './registerform/registerform.component';
-import { HttpClient } from '@angular/common/http';
-import { HttpErrorResponse } from '@angular/common/http';
 import { WebapiService } from './webapi.service';
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,8 +17,7 @@ import { WebapiService } from './webapi.service';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClient,
-    HttpErrorResponse
+    HttpClientModule
   ],
   providers: [WebapiService],
   bootstrap: [AppComponent]

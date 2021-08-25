@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient ,HttpErrorResponse} from '@angular/common/http';
+import { HttpClient ,HttpErrorResponse,HttpParams } from '@angular/common/http';
 import { throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { retry, catchError } from 'rxjs/operators';
 
 
 @Injectable({
@@ -9,27 +9,38 @@ import { catchError } from 'rxjs/operators';
 })
 export class WebapiService {
   URL = 'http://localhost:3000/';
+  httpClient: any;
   constructor( private http:HttpClient) { }
 
   getCountry(){
-    return this.http.get(`${this.URL}country`).pipe(
-      catchError(this.handleError)
-    );
+    return this.http.get<any>(`${this.URL}country`);
   }
   getState(){
-    return this.http.get(`${this.URL}state`).pipe(
-      catchError(this.handleError)
-    );
+    return this.http.get<any>(`${this.URL}state`);
   }
-  private handleError(error: HttpErrorResponse){
-    if(error.error instanceof ErrorEvent)
-    {
-      console.error('An error occured:',error.error.message);
-    }
-    else{
-      console.error(`Backend returned code ${error.status},`+`body was: ${error.error}`);
-    }
-    return throwError('something bad happened.please try again');
+  postRegister(data:any){
+    return this.http.post<any>(`${this.URL}register`,data);
   }
+  // .pipe(
+  //   catchError(this.handleError)
   
+  public handleError(error: HttpErrorResponse) {
+    let errorMessage = 'Unknown error!';
+    if (error.error instanceof ErrorEvent) {
+      // Client-side errors
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // Server-side errors
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    window.alert(errorMessage);
+    return throwError(errorMessage);
+  }
+
+  
+  // public sendGetRequest(){
+  //   // return this.httpClient.get(this.URL).pipe(retry(3), catchError(this.handleError));
+  //   const options = { params: new HttpParams({fromString: "_page=1&_limit=20"}) };
+  //   return this.httpClient.get(this.URL, options).pipe(retry(3), catchError(this.handleError));
+  // }
 }
