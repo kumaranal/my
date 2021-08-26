@@ -7,11 +7,13 @@ import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { RegisterformComponent } from './registerform/registerform.component';
 import { WebapiService } from './webapi.service';
 import { HttpClientModule } from '@angular/common/http';
+import { WelcomepageComponent } from './welcomepage/welcomepage.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterformComponent
+    RegisterformComponent,
+    WelcomepageComponent
   ],
   imports: [
     BrowserModule,
