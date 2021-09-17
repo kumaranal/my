@@ -24,18 +24,18 @@ export class WebapiService {
   // .pipe(
   //   catchError(this.handleError)
   
-  public handleError(error: HttpErrorResponse) {
-    let errorMessage = 'Unknown error!';
-    if (error.error instanceof ErrorEvent) {
-      // Client-side errors
-      errorMessage = `Error: ${error.error.message}`;
-    } else {
-      // Server-side errors
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    window.alert(errorMessage);
-    return throwError(errorMessage);
-  }
+  // public handleError(error: HttpErrorResponse) {
+  //   let errorMessage = 'Unknown error!';
+  //   if (error.error instanceof ErrorEvent) {
+  //     // Client-side errors
+  //     errorMessage = `Error: ${error.error.message}`;
+  //   } else {
+  //     // Server-side errors
+  //     errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+  //   }
+  //   window.alert(errorMessage);
+  //   return throwError(errorMessage);
+  // }
 
   
   // public sendGetRequest(){

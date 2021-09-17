@@ -8,6 +8,9 @@ import { RegisterformComponent } from './registerform/registerform.component';
 import { WebapiService } from './webapi.service';
 import { HttpClientModule } from '@angular/common/http';
 import { WelcomepageComponent } from './welcomepage/welcomepage.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+
 
 @NgModule({
   declarations: [
@@ -19,9 +22,12 @@ import { WelcomepageComponent } from './welcomepage/welcomepage.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
+    
+   
   ],
-  providers: [WebapiService],
-  bootstrap: [AppComponent]
+  providers: [WebapiService,RegisterformComponent],
+  bootstrap: [AppComponent,RegisterformComponent]
 })
 export class AppModule { }

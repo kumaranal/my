@@ -57,13 +57,28 @@
       <div id="customControlValidation6">
         <div id="third">
           Gender:
-  
+          <div class="gender">
           <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" />
-          <label class="form-check-label" for="inlineRadio1">Male</label>
+          <label class="form-check-label" for="inlineRadio1">     Male</label>
   
           <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" />
           <label class="form-check-label" for="inlineRadio2">Female</label>
-  
+        </div>
+          <div>
+          <ngb-datepicker #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden">
+          </ngb-datepicker>
+          
+          <ng-template #t let-date let-focused="focused">
+            <span class="custom-day"
+                  [class.focused]="focused"
+                  [class.range]="isRange(date)"
+                  [class.faded]="isHovered(date) || isInside(date)"
+                  (mouseenter)="hoveredDate = date"
+                  (mouseleave)="hoveredDate = null">
+              {{ date.day }}
+            </span>
+          </ng-template>
+        </div>
           <div id="button">
             <button type="button" class="btn btn-primary btn-lg" (click)="submit()">SUBMIT</button>
           </div>
