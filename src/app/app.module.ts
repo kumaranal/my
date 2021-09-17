@@ -27,7 +27,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     
    
   ],
-  providers: [WebapiService,RegisterformComponent],
-  bootstrap: [AppComponent,RegisterformComponent]
+  providers: [WebapiService],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

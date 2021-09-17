@@ -41,7 +41,10 @@ export class RegisterformComponent implements OnInit{
       phone_no: new FormControl('', [Validators.required]),
      country: new FormControl ('',[Validators.required]),
      state: new FormControl ('',[Validators.required]),
-    });
+     gender:new FormControl('',[Validators.required]),
+     calender:new FormControl('',[Validators.required])
+
+    })
  
      //for country
       this.WebapiService.getCountry().subscribe(
@@ -74,29 +77,16 @@ export class RegisterformComponent implements OnInit{
   get email() { return this.loginform.get('email')!; }
   get phone_no() { return this.loginform.get('phone_no')!; }
   get country() { return this.loginform.get('country')!; }
+  get state(){return this.loginform.get('state')!;}
+  get gender(){return this.loginform.get('gender')!;}
+  get calender(){return this.loginform.get('calender')!;}
 
 
-submit():void{
-  console.log(this.loginform.value);
-  this.WebapiService.postRegister(this.loginform.value).subscribe(
-    data => {
-      // console.log(data);
-      // console.log(data.message);
-      if(data.message=="Success")
-      {
-        alert('Success update!');
-        
-      }
-    }
-    
-  );
-  //if:alart condition to check the post method success
-  
-    this.router.navigate(['/app-welcomepage']);
-  
-}
+
+
+
  
-
+//calender range
 onDateSelection(date: NgbDate) {
   if (!this.fromDate && !this.toDate) {
     this.fromDate = date;
@@ -110,7 +100,9 @@ onDateSelection(date: NgbDate) {
 
 isHovered(date: NgbDate) {
   return this.fromDate && !this.toDate && this.hoveredDate && date.after(this.fromDate) && date.before(this.hoveredDate);
+  
 }
+
 
 isInside(date: NgbDate) {
   return this.toDate && date.after(this.fromDate) && date.before(this.toDate);
@@ -118,8 +110,34 @@ isInside(date: NgbDate) {
 
 isRange(date: NgbDate) {
   return date.equals(this.fromDate) || (this.toDate && date.equals(this.toDate)) || this.isInside(date) || this.isHovered(date);
-}
+};
 
+
+
+
+
+
+
+
+submit():void{
+ console.log(this.loginform.value);
+  this.WebapiService.postRegister(this.loginform.value).subscribe(
+    data => {
+      console.log(data);
+      // console.log(data.message);
+      if(data.message=="Success")
+      {
+       // alert('Success update!');
+        
+      }
+    }
+    
+  );
+  //if:alart condition to check the post method success
+  
+    this.router.navigate(['/app-welcomepage']);
+  
+}
 }
 
 

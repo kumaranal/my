@@ -57,27 +57,34 @@
       <div id="customControlValidation6">
         <div id="third">
           Gender:
-          <div class="gender">
-          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" />
-          <label class="form-check-label" for="inlineRadio1">     Male</label>
+          <div class="gender" >
+          <input class="form-check-input" type="radio"  id="inlineRadio1" value="Male" formControlName="gender"/>
+          <label class="form-check-label" for="inlineRadio1">Male</label>
   
-          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" />
+          <input class="form-check-input" type="radio"  id="inlineRadio2" value="Female" formControlName="gender"/>
           <label class="form-check-label" for="inlineRadio2">Female</label>
-        </div>
-          <div>
-          <ngb-datepicker #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden">
-          </ngb-datepicker>
+          </div>
           
+
+          <div >
+            <!-- calender date -->
+          <ngb-datepicker #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden" 
+          value="" 
+          formControlName="calender">
+          </ngb-datepicker>
+          <!-- calender css control -->
           <ng-template #t let-date let-focused="focused">
             <span class="custom-day"
                   [class.focused]="focused"
                   [class.range]="isRange(date)"
                   [class.faded]="isHovered(date) || isInside(date)"
                   (mouseenter)="hoveredDate = date"
-                  (mouseleave)="hoveredDate = null">
+                  (mouseleave)="hoveredDate = null"
+                  >
               {{ date.day }}
             </span>
           </ng-template>
+          <!-- <pre>From: {{ fromDate | json }} </pre> -->
         </div>
           <div id="button">
             <button type="button" class="btn btn-primary btn-lg" (click)="submit()">SUBMIT</button>
