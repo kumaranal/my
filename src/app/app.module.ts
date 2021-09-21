@@ -8,8 +8,7 @@ import { RegisterformComponent } from './registerform/registerform.component';
 import { WebapiService } from './webapi.service';
 import { HttpClientModule } from '@angular/common/http';
 import { WelcomepageComponent } from './welcomepage/welcomepage.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 
 
 @NgModule({
@@ -23,7 +22,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgbModule
+    FormsModule,
+    NgxDaterangepickerMd.forRoot()
+    
     
    
   ],
